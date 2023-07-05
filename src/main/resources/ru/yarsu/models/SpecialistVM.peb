@@ -1,0 +1,33 @@
+{# @pebvariable name="model" type="ru.yarsu.models.SpecialistVM" #}
+{% extends "./layout.peb" %}
+
+{% block title %}
+  {{ model.specialist.name }}
+{% endblock %}
+
+{% block content %}
+  <div class = "grid-container">
+    <div class="cell">
+      <div class="card">
+        <div class="card-section">
+            <p><strong>Услуга: {{ model.specialist.service }}</strong></p>
+            <p><b>Название: {{ model.specialist.name }}</b></p>
+            <p> {{ model.specialist.nsp }}</p>
+            <p><b> Описание:</b></p>
+            <p> {{ model.specialist.description }}</p>
+            <p><b>Образование:</b></p>
+            <ul>
+                    {% for item in model.specialist.education %}
+                    <li> {{ item }}</li>
+                    {% endfor %}
+            </ul>
+            <p>Номер телефона: {{ model.specialist.phoneNumber }}</p>
+            <p> Время добавления: {{ model.specialist.timeOf() }}</p>
+            <p> Дата добавления: {{ model.specialist.dateOf() }}</p>
+            <a href="/specialist/{{ model.specialist.index }}/edit">Редактировать</a>
+            <a href="/specialist/{{ model.specialist.index }}/delete">Удалить</a>
+        </div>
+      </div>
+    </div>
+ </div>
+{% endblock %}

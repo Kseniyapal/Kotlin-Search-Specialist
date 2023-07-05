@@ -1,0 +1,56 @@
+{# @pebvariable name="model" type="ru.yarsu.models.CreateFormVM" #}
+{% extends "./layout.peb" %}
+
+{% block content %}
+    <form enctype="application/x-www-form-urlencoded" method="post">
+        <div class="grid-container">
+            <div class="grid-x grid-padding-x">
+                <div class="medium-12 cell">
+                    <label>Услуга
+                        <input type="text" name="service" value="{{ model.validateInfo.listValues[0] }}">
+                        <p> {{ model.validateInfo.mapErrors.service }} </p>
+                    </label>
+                </div>
+                <div class="medium-12 cell">
+                    <label>Название
+                        <input type="text" name="name" value="{{ model.validateInfo.listValues[1] }}">
+                        <p> {{ model.validateInfo.mapErrors.name }} </p>
+                    </label>
+                </div>
+                <div class="medium-12 cell">
+                    <label>Описание
+                        <input type="text" name="description" value="{{ model.validateInfo.listValues[2] }}" >
+                        <p> {{ model.validateInfo.mapErrors.description }} </p>
+                    </label>
+                </div>
+                <div class="medium-12 cell">
+                    <label>ФИО
+                        <input type="text" name="nsp" value="{{ model.validateInfo.listValues[3] }}">
+                        <p> {{ model.validateInfo.mapErrors.nsp }} </p>
+                    </label>
+                </div>
+                <div class="medium-12 cell">
+                    <label>Образование
+                        <input type="text" name="education" value="{{ model.validateInfo.listValues[4] }}">
+                        <p> {{ model.validateInfo.mapErrors.education }} </p>
+
+                    </label>
+                </div>
+                <div class="medium-12 cell">
+                    <label>Номер телефона
+                        <input type="text" name="phoneNumber" value="{{ model.validateInfo.listValues[5] }}">
+                        <p> {{ model.validateInfo.mapErrors.phoneNumber }} </p>
+                    </label>
+                </div>
+                <div class="medium-6 cell">
+                        {% if model.toDo == "Create" %}
+
+                        <input type="submit"  class="button" value="Save">
+                        {% else %}
+                        <input type="submit"  class="button" value="Edit">
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

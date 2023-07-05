@@ -1,0 +1,12 @@
+{# @pebvariable name="model" type="ru.yarsu.models.DeleteFormVM" #}
+{% extends "./layout.peb" %}
+
+{% block content %}
+  <p> Вы уверены?</p>
+    <form method="post">
+        <input type="checkbox" name="ok"> Yes <br>
+        <div class="medium-6 cell">
+            <input type="submit"  class="button" value="Sure">
+        </div>
+    </form>
+{% endblock %}

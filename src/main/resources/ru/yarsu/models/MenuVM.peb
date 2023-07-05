@@ -1,0 +1,21 @@
+{% extends "./layout.peb" %}
+
+{% block title %}
+  Услуги
+{% endblock %}
+
+{% block content %}
+  <h3> Услуги</h3>
+  {% for item in model.listMenu %}
+    <div class = "grid-container">
+      <div class="cell">
+        <div class="card">
+          <div class="card-section">
+            <a href="/specialists/{{item}}"> {{item}} </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  {% endfor %}
+{% endblock %}

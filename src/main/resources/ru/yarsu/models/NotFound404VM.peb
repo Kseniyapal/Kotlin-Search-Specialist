@@ -1,0 +1,13 @@
+{% extends "./layout.peb" %}
+
+{% block title %}
+  Не найдено
+{% endblock %}
+
+{% block content %}
+<h1>Такой страницы нет!</h1>
+ <h2> Вы перешли по адресу {{ model.uri }}</h2>
+ <h2> Воспользуйтесь меню навигации </h2>
+
+
+{% endblock %}

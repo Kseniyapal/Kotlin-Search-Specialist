@@ -1,0 +1,22 @@
+{% extends "./layout.peb" %}
+{# @pebvariable name="model" type="ru.yarsu.models.LoginFormVM" #}
+
+{%block title%}
+Вход
+{% endblock %}
+
+{% block content %}
+<form enctype="application/x-www-form-urlencoded" method="post">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+            <div class="medium-12 cell">
+                <label>Name
+                    <input type="text" name="type" value="{{ model.name }}">
+                </label>
+                <p>Jopa</p>
+                <input type="submit"  class="button" value="Enter">
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,77 @@
+{# @pebvariable name="model" type="ru.yarsu.models.SpecialistsVM" #}
+{% extends "./layout.peb" %}
+
+{% block title %}
+  Список специалистов
+{% endblock %}
+
+{% block content %}
+
+<form method="get">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+
+            <div class="medium-6 cell">
+                <select name="sort" value="{{ model.sort }}">
+                    <option value="ascendingTime">По возрастанию даты добавления</option>
+                    <option value="descendingTime">По убыванию даты добавления</option>
+                    <option value="ascendingService">По услугам (в алфавитном порядке)</option>
+                    <option value="descendingService">По услугам (наоборот алфавитному порядку)</option>
+                    <option value="ascendingIndex">По возрастанию ID</option>
+                    <option value="descendingIndex">По убыванию ID</option>
+                </select>
+            </div>
+            <div class="medium-6 cell">
+                <label>Услуга
+                    <input type="text" name="service" value="{{ model.serviceToFilter }}">
+                </label>
+            </div>
+            <div class="medium-6 cell">
+                <label>Название
+                    <input type="text" name="name" value="{{model.nameToFilter }}">
+                </label>
+            </div>
+            <div class="medium-6 cell">
+                <input type="submit"  class="button" value="Submit">
+            </div>
+        </div>
+    </div>
+</form>
+  {% for specialist in model.specialists %}
+    <div class = "grid-container">
+      <div class="cell">
+        <div class="card">
+          <div class="card-section">
+            <p><strong>Услуга: {{ specialist.service }}</strong></p>
+            <p><b>Название: {{ specialist.name }}</b></p>
+            <p> {{ specialist.nsp }}</p>
+            <p> Время добавления: {{ specialist.timeOf() }}</p>
+            <p> Дата добавления: {{ specialist.dateOf() }}</p>
+            <a href="/specialist/{{ specialist.index }}">Подробнее</a>
+            <a href="/specialist/{{ specialist.index }}/edit">Редактировать</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% if model.specialists.isEmpty() %}
+    <p> Нет содержимого </p>
+{% endif %}
+<nav aria-label="Pagination">
+    <ul class="pagination">
+        {% if model.paginator.possibilityToGoBack() %}
+            <li class="pagination-previous "><a href="{{ model.paginator.previousPage() }}" aria-label="Previous page">Previous <span class="show-for-sr">page</span></a></li>
+        {% endif %}
+        {% for page in model.paginator.previousPages %}
+            <li><a href="{{ page.uri }}" aria-label="Page {{ page.number }}">{{ page.number }}</a></li>
+        {% endfor %}
+        <li class="current"><span class="show-for-sr">You're on page</span> {{ model.paginator.getNowPage() }}</li>
+        {% for page in model.paginator.nextPages() %}
+            <li><a href="{{ page.uri }}" aria-label="Page {{ page.number }}">{{ page.number }}</a></li>
+        {% endfor %}
+        {% if model.paginator.possibilityToGoForward() %}
+            <li class="pagination-next"><a href="{{ model.paginator.nextPage()}}" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endblock %}
